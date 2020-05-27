@@ -103,7 +103,14 @@ const animationTimeline = () => {
       "+=0.7"
     )
     .from(".idea-1", 0.7, ideaTextTrans)
+    .to(".idea-1 strong", 0.5, {
+      scale: 1.2,
+      x: 10,
+      backgroundColor: "rgb(239, 35, 35)",
+      color: "#fff"
+    })
     .to(".idea-1", 0.7, ideaTextTransLeave, "+=1.5")
+
     .from(".idea-2", 0.7, ideaTextTrans)
     .to(".idea-2", 0.7, ideaTextTransLeave, "+=1.5")
     .from(".idea-3", 0.7, ideaTextTrans)
@@ -257,44 +264,19 @@ const animationTimeline = () => {
       y: 30,
       zIndex: "-1"
     })
-    .staggerFrom(".nine p", 2, ideaTextTrans, 1.2)
-    .staggerTo(".nine p", 2, ideaTextTransLeave, 1.2)
+    .staggerFrom(".nine p", 3, ideaTextTrans, 1.2)
+    .staggerTo(".nine p", 3, ideaTextTransLeave, 1.2)
     .to(
       ".last-smile",
       0.5,
       {
-        rotation: 90
-      },
-      "+=1"
-    ).from(".ten", 0.7, {
-      opacity: 0,
-      y: 10
-    })
-    .from(".eleven", 0.4, {
-      opacity: 0,
-      y: 10
-    })
-    .to(
-      ".ten",
-      0.7,
-      {
-        opacity: 0,
-        y: 10
-      },
-      "+=2.5"
-    )
-    .to(
-      ".eleven",
-      0.7,
-      {
-        opacity: 0,
-        y: 10,
+        rotation: 90,
         onComplete: function () {
           mainContainer.style.overflow = 'inherit'
         }
       },
-      "-=1"
-    ).staggerFrom(".twelve video", 1, ideaTextTrans, 1.2);
+      "+=1"
+    ).staggerFrom(".twelve div", 1, ideaTextTrans, 1.2);
 
   // tl.seek("currentStep");
   // tl.timeScale(2);
