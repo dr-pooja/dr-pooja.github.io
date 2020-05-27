@@ -3,6 +3,7 @@ const animationTimeline = () => {
   // Spit chars that needs to be animated individually
   const textBoxChars = document.getElementsByClassName("hbd-chatbox")[0];
   const hbd = document.getElementsByClassName("wish-hbd")[0];
+  const mainContainer = document.getElementById("main-container");
 
   textBoxChars.innerHTML = `<span>${textBoxChars.innerHTML
     .split("")
@@ -195,7 +196,7 @@ const animationTimeline = () => {
       "-=2"
     )
     .from(".hat", 0.5, {
-      x: -100,
+      x: 500,
       y: 350,
       rotation: -180,
       opacity: 0
@@ -256,7 +257,8 @@ const animationTimeline = () => {
       y: 30,
       zIndex: "-1"
     })
-    .staggerFrom(".nine p", 1, ideaTextTrans, 1.2)
+    .staggerFrom(".nine p", 2, ideaTextTrans, 1.2)
+    .staggerTo(".nine p", 2, ideaTextTransLeave, 1.2)
     .to(
       ".last-smile",
       0.5,
@@ -264,7 +266,35 @@ const animationTimeline = () => {
         rotation: 90
       },
       "+=1"
-    );
+    ).from(".ten", 0.7, {
+      opacity: 0,
+      y: 10
+    })
+    .from(".eleven", 0.4, {
+      opacity: 0,
+      y: 10
+    })
+    .to(
+      ".ten",
+      0.7,
+      {
+        opacity: 0,
+        y: 10
+      },
+      "+=2.5"
+    )
+    .to(
+      ".eleven",
+      0.7,
+      {
+        opacity: 0,
+        y: 10,
+        onComplete: function () {
+          mainContainer.style.overflow = 'inherit'
+        }
+      },
+      "-=1"
+    ).staggerFrom(".twelve video", 1, ideaTextTrans, 1.2);
 
   // tl.seek("currentStep");
   // tl.timeScale(2);
@@ -281,6 +311,8 @@ const fetchData = () => {
   fetch("customize.json")
     .then(data => data.json())
     .then(data => {
+      return
+      /*
       Object.keys(data).map(customData => {
         if (data[customData] !== "") {
           if (customData === "imagePath") {
@@ -292,6 +324,7 @@ const fetchData = () => {
           }
         }
       });
+      */
     });
 };
 
